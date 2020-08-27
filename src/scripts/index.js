@@ -9,9 +9,6 @@ import "../pages/index.css"
 (function() {
 
     const API_URL = process.env.NODE_ENV === "production" ? "https://nomoreparties.co" : "http://nomoreparties.co";
-
-    console.log(API_URL);
-
     const accessToServer = {
         token: 'fb0ad808-7cc9-442a-a27e-b803119b4f77',
         groupID: 'cohort12',
