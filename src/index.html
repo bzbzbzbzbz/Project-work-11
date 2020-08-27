@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+  <script src="scripts/Api.js" defer></script>
+  <script src="scripts/Card.js" defer></script>
+  <script src="scripts/CardList.js" defer></script>
+  <script src="scripts/FormValidator.js" defer></script>
+  <script src="scripts/Popup.js" defer></script>
+  <script src="scripts/UserInfo.js" defer></script>
+  <script src="scripts/index.js" defer></script>
+</head>
+<body>
+  <div class="root">
+    <header class="header root__section">
+      <img src="./images/logo.svg" alt="mesto logo" class="logo">
+    </header>
+
+    <div class="profile root__section">
+      <div class="user-info">
+        <div class="user-info__photo"></div>
+        <div class="user-info__data">
+          <h1 class="user-info__name">Jaques Causteau</h1>
+          <p class="user-info__job">Sailor, Researcher</p>
+          <button class="button user-info__edit popup__button_main">Edit</button>
+        </div>
+        <button class="button user-info__button popup__button_main">+</button>
+      </div>
+    </div>
+
+    <div class="places-list root__section">
+
+    </div>
+
+    <div class="popup popup_add-card">
+      <div class="popup__content">
+        <img src="./images/close.svg" alt="" class="popup__close popup__close_add-card">
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup__form" name="new" novalidate>
+            <input
+                    type="text"
+                    name="name"
+                    class="popup__input popup__input_type_name"
+                    id="name"
+                    placeholder="Название"
+                    minlength="3"
+                    maxlength="30"
+                    required
+                    autocomplete="off"
+            >
+          <span class="popup__form-error" id="name-error"></span>
+          <input
+                    type="url"
+                    name="link"
+                    class="popup__input popup__input_type_link-url"
+                    id="link"
+                    placeholder="Ссылка на картинку"
+                    minlength="3"
+                    required
+                    autocomplete="off"
+          >
+          <span class="popup__form-error" id="link-error"></span>
+          <button type class="button popup__button popup__button_plus" disabled formnovalidate>+</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_edit-info">
+      <div class="popup__content">
+        <img src="./images/close.svg" alt="" class="popup__close popup__close_edit-info">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="popup__form" name="info" novalidate>
+          <input
+                  type="text"
+                  name="initials"
+                  class="popup__input popup__input_type_initials"
+                  id="initials"
+                  placeholder="Имя"
+                  minlength="3"
+                  maxlength="30"
+                  required
+                  autocomplete="off"
+          >
+          <span class="popup__form-error" id="initials-error"></span>
+          <input
+                  type="text"
+                  name="about"
+                  class="popup__input popup__input_type_about"
+                  id="about"
+                  placeholder="О себе"
+                  minlength="3"
+                  maxlength="30"
+                  required
+                  autocomplete="off"
+                  >
+          <span class="popup__form-error" id="about-error"></span>
+          <button type class="button popup__button popup__button_text" disabled formnovalidate>Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_card-image">
+      <div class="content_card-image">
+        <img src="./images/close.svg" alt="" class="popup__close popup__close_card-image">
+        <img class="popup__image" src="" alt="pic">
+      </div>
+    </div>
+
+    <template id="template">
+      <div class="place-card">
+        <div class="place-card__image">
+          <button class="place-card__delete-icon"></button>
+        </div>
+        <div class="place-card__description">
+          <h3 class="place-card__name"></h3>
+          <button class="place-card__like-icon"></button>
+        </div>
+      </div>
+    </template>
+  </div>
+
+</body>
+</html>
