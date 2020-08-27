@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
     constructor(accessToServer) {
         this.token = accessToServer.token;
         this.groupID = accessToServer.groupID;
