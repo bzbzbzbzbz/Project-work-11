@@ -1,9 +1,18 @@
+import Api from "./API.js"
+import Card from "./Card.js"
+import CardList from "./CardList.js"
+import FormValidator from "./FormValidator.js"
+import Popup from "./Popup.js"
+import UserInfo from "./UserInfo.js"
+import "../pages/index.css"
+
 (function() {
 
+    const API_URL = process.env.NODE_ENV === "production" ? "https://nomoreparties.co" : "http://nomoreparties.co";
     const accessToServer = {
         token: 'fb0ad808-7cc9-442a-a27e-b803119b4f77',
         groupID: 'cohort12',
-        serverAddress: 'https://praktikum.tk'
+        serverAddress: API_URL
     }
 
     const serverData = new Api(accessToServer);
@@ -66,16 +75,9 @@
         const newNameInfo = editInfoForm.initials.value;
         const newJobInfo = editInfoForm.about.value;
         event.preventDefault();
-        /*
-            Можно лучше: не создавать каждый раз экземпляр класса UserInfo
-            Создать его один раз глобально и использовать
-        */
+
         const newInfo = new UserInfo(nameInfo, jobInfo);
 
-        /*
-            Можно лучше: в ответ на обновление данных сервер возвращает
-            обновленные данные пользователя. Лучше использовать их
-        */
         newInfo.setUserInfo(newNameInfo, newJobInfo)
 
         serverData.newInfoAboutMe(newNameInfo, newJobInfo)
@@ -117,44 +119,3 @@
         })
 
 }())
-
-/*
-    Неплохая работа, класс Api создан и запросы на сервер отправляются
-    Но по организации взаимодействия с сервером есть ряд замечаний
-
-    Надо исправить:
-    - при ответе сервера нужна проверка, что запрос выполнился успешно
-    - проверка ответа сервера и преобразование из json нужны так же при отправке newInfoAboutMe
-    - все изменения на странице должны происходить, только после того, как сервер ответил подтверждением
-    - в конце обработки запроса должны быть обработка ошибок
-
-    Можно лучше:
-    - загрузку начальных данных лучше сделать с помощью Promise.all
-    - адрес сервера https://praktikum.tk так же передавать в конструктор класса Api
-
-*/
-
-/*
-    Отлично, критические замечания исправлены
-
-    Можно лучше:
-    - проверка ответа сервера и преобразование из json
-    дублируется во всех методах класса Api, лучше вынести в отдельный метод
-
-    - не создавать каждый раз экземпляр класса UserInfo
-    Создать его один раз глобально и использовать
-
-    - в ответ на обновление данных сервер возвращает
-    обновленные данные пользователя. Лучше использовать их
-
-    Для закрепления полученных знаний советую сделать и оставшуюся часть задания.
-    
-    Если у Вас будет свободное время так же попробуйте освоить работу с сервером
-    применив async/await для работы с асинхронными запросами.
-    https://learn.javascript.ru/async-await
-    https://habr.com/ru/company/ruvds/blog/414373/
-    https://www.youtube.com/watch?v=SHiUyM_fFME
-    Это часто используется в реальной работе
-
-    Успехов в дальнейшем обучении!
-*/
